@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  have_many :spendings
+  has_many :spendings
   has_secure_password
   validates :password_digest, presence: true
   validates :name, presence: true

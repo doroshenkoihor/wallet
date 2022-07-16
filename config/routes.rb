@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resource :session, only: %i[new show create destroy]
-  resources :users, only: %i[index show new create edit update destroy]
+  get "signup", to: "users#new"
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+  resources :users, only: %i[index show create edit update destroy]
   resources :spendings, only: %i[index show new create edit update destroy]
-  root 'spendings#index'
+  root 'welcome#index'
 end

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    admin = User.find_by email: params[:email]
+    user = User.find_by email: params[:email]
 
     if user&.authenticate(params[:password])
       sign_in user
@@ -12,12 +12,12 @@ class SessionsController < ApplicationController
       redirect_to spendings_path
     else
       flash.now[:alert] = "There was something wrong with your login details."
-      redirect_to new_session_path
+      redirect_to login_path
     end
   end
 
   def destroy
     sign_out
-    redirect_to root_path
+    redirect_to login_path
   end
 end

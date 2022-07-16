@@ -10,22 +10,22 @@ class SpendingPolicy
   end
 
   def show?
-    true
+    is_owner?
   end
 
   def create?
-    true
+    @user.present?
   end
 
   def update?
-    @user.present?
+    is_owner?
   end
 
   def edit
-    @user.present?
+    update?
   end
 
   def destroy?
-    true
+    is_owner?
   end
 end

@@ -14,12 +14,7 @@ module Authentication
 
     def require_authentication
       return if user_signed_in?
-      redirect_to spendings_path
-    end
-
-    def require_no_authentication
-      return if !user_signed_in?
-      redirect_to login_path
+      redirect_to root_path
     end
 
     def sign_in(user)

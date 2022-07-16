@@ -1,21 +1,35 @@
 <% if policy(@spendings).index? %>
   <% provide :page_title, 'Spendings' %>
   <% currently_at 'Spendings' %>
-  <h1 class="mb-4">Spendings:</h1>
-  <div class="row row-cols-1 row-cols-md-5 g-4 mb-4">
-    <% @spendings.each do |spending| %>
-      <div class="col">
-        <div class="card" style="width: 300px;">
-          <h2 class="mb-4 card-header"><%= spending.category %></h2>
-          <div class="card-body">
-            <%= link_to "Show", spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
-            <%= link_to "Edit", edit_spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
-            <%= link_to "Destroy", spending_path(spending), class: 'btn btn-danger btn-sm', data: {method: :delete, confirm: "Are you sure?"} %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <div class='d-flex justify-content-between'>
+    <h1 class="mb-4">My Spendings:</h1>
+    <%= button_to "+ Add spending", new_spending_path, :id => 'open-contacts-dialog-btn',
+      class: 'btn btn-primary btn-lg', :method => :get %>
   </div>
-  <%= button_to "Add spending", new_spending_path, :id => 'open-contacts-dialog-btn',
-  class: 'btn btn-primary', :method => :get %>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="col-md-2">Category</th>
+          <th scope="col" class="col-md-2">Amount</th>
+          <th scope="col" class="col-md-6">Description</th>
+          <th scope="col" class="col-md-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @spendings.each do |spending| %>
+          <tr >
+            <td><%= spending.category %></td>
+            <td><%= spending.amount %></td>
+            <td style="word-break: break-all"><%= spending.description %></td>
+            <td>
+              <%= link_to "Show", spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
+              <%= link_to "Edit", edit_spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
+              <%= link_to "Destroy", spending_path(spending), class: 'btn btn-danger btn-sm', data: {method: :delete, confirm: "Are you sure?"} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>

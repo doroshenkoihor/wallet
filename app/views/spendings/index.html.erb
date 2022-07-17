@@ -6,30 +6,56 @@
     <%= button_to "+ Add spending", new_spending_path, :id => 'open-contacts-dialog-btn',
       class: 'btn btn-primary btn-lg', :method => :get %>
   </div>
-  <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col" class="col-md-2">Category</th>
-          <th scope="col" class="col-md-2">Amount</th>
-          <th scope="col" class="col-md-6">Description</th>
-          <th scope="col" class="col-md-2">Actions</th>
+  <%= form_tag(spendings_path, method: :get, class: 'mb-5') do %>
+    <div class='d-flex mb-3'>
+      <div class="form-group p-1">
+        <label class="mb-1">Category:</label>
+        <%= select_tag :category, options_for_select({ all: nil }.merge(Spending::categories), params[:category]), class: "form-select" %>
+      </div>
+      <div class="form-group p-1">
+        <label class="mb-1">Amount From:</label>
+        <%= number_field_tag :amount_from, params[:amount_from], step: 0.01, class: "form-control" %>
+      </div>
+      <div class="form-group p-1">
+        <label class="mb-1">Amount To:</label>
+        <%= number_field_tag :amount_to, params[:amount_to], step: 0.01, class: "form-control" %>
+      </div>
+      <div class="form-group p-1">
+        <label class="mb-1">Description contains:</label>
+        <%= text_field_tag :description, params[:description], class: "form-control" %>
+      </div>
+    </div>
+    <%= submit_tag 'Apply Filters' , name: nil, class: 'btn btn-secondary' %>
+  <% end %>
+  <div class="mb-5">
+    <label class="mb-1">Share my spendings:</label>
+    <input class="form-control" type="text" value=<%=@share_link%> readonly></input>
+</div>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="col-md-2">Category</th>
+        <th scope="col" class="col-md-2">Amount</th>
+        <th scope="col" class="col-md-6">Description</th>
+        <th scope="col" class="col-md-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @spendings.each do |spending| %>
+        <tr >
+          <td><%= spending.category %></td>
+          <td><%= spending.amount %></td>
+          <td style="word-break: break-all"><%= spending.description %></td>
+          <td>
+            <%= link_to "Show", spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
+            <%= link_to "Edit", edit_spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
+            <%= link_to "Destroy", spending_path(spending), class: 'btn btn-danger btn-sm', data: { method: :delete, confirm: "Are you sure?" } %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @spendings.each do |spending| %>
-          <tr >
-            <td><%= spending.category %></td>
-            <td><%= spending.amount %></td>
-            <td style="word-break: break-all"><%= spending.description %></td>
-            <td>
-              <%= link_to "Show", spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
-              <%= link_to "Edit", edit_spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
-              <%= link_to "Destroy", spending_path(spending), class: 'btn btn-danger btn-sm', data: {method: :delete, confirm: "Are you sure?"} %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
+  <h1>Total: <%= @total %></h1>
+</div>
 <% end %>

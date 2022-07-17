@@ -4,6 +4,12 @@ class SpendingsController < ApplicationController
 
   def index
     @spendings = Spending.all
+    @spendings = @spendings.where(category: params[:category]) if params[:category].present?
+    @spendings = @spendings.where(amount: params[:amount_from]..) if params[:amount_from].present?
+    @spendings = @spendings.where('amount <= ?', params[:amount_to].to_f) if params[:amount_to].present?
+    @spendings = @spendings.where("description like ?", "%#{params[:description]}%") if params[:description].present?
+    @total = @spendings.sum(:amount)
+    @share_link = share_spendings_url(user_id: @current_user.id)
   end
 
   def new

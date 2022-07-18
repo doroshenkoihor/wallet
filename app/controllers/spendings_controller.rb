@@ -40,9 +40,11 @@ class SpendingsController < ApplicationController
 
   def show
     @spending = Spending.find(params[:id])
+    @categories = Spending.categories.keys
   end
 
   def edit
+    @spending = Spending.find(params[:id])
     @categories = Spending.categories.keys
   end
 

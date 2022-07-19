@@ -1,6 +1,5 @@
 class SpendingsController < ApplicationController
   before_action :require_authentication
-  #before_action :authorize_spending!
 
   def index
     @spendings = Spending.all
@@ -9,7 +8,7 @@ class SpendingsController < ApplicationController
     @spendings = @spendings.where('amount <= ?', params[:amount_to].to_f) if params[:amount_to].present?
     @spendings = @spendings.where("description like ?", "%#{params[:description]}%") if params[:description].present?
     @total = @spendings.sum(:amount)
-    @share_link = share_spendings_url(user_id: @current_user.id)
+    @share_link = share_spendings_url(user_id: current_user.id)
   end
 
   def new
@@ -59,8 +58,4 @@ class SpendingsController < ApplicationController
   def spending_params
     params.require(:spending).permit(:category, :description, :amount)
   end
-
-  #def authorize_spending!
-  #  authorize(@spending || Spending)
-  #end
 end

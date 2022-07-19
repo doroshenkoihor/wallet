@@ -105,6 +105,7 @@ GEM
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    pg (1.4.1)
     public_suffix (4.0.7)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -193,7 +194,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.4)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -232,6 +232,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  pg
   puma (~> 4.1)
   pundit
   rails (~> 6.0.5)
@@ -241,7 +242,6 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)

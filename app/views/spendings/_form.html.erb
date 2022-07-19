@@ -1,0 +1,29 @@
+<div class="container-sm">
+  <%= form_with model: @spending do |f| %>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :category %>
+      </div>
+      <div class="col-sm-10">
+        <%= f.select :category, @categories, {}, class: 'form-select form-select-lg' %>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :amount %>
+      </div>
+      <div class="col-sm-10">
+        <%= f.number_field :amount, class: 'form-control form-control-lg', step: 0.01 %>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :description %>
+      </div>
+      <div class="col-sm-10">
+        <%= f.text_area :description, class: 'form-control form-control-lg' %>
+      </div>
+    </div>
+    <%= f.submit "#{@spending&.id ? "Update" : "Create"} Spending ", class: 'btn btn-primary btn-lg' %>
+  <% end %>
+</div>

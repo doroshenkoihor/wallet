@@ -1,26 +1,24 @@
-<% if policy(@spendings).index? %>
-  <% provide :page_title, 'Spendings' %>
-  <% currently_at 'Spendings' %>
-  <h1 class="mb-4">Spendings for user <%= @user.name %>:</h1>
-  <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col" class="col-md-2">Category</th>
-          <th scope="col" class="col-md-2">Amount</th>
-          <th scope="col" class="col-md-6">Description</th>
+<% provide :page_title, 'Spendings' %>
+<% currently_at 'Spendings' %>
+<h1 class="mb-4">Spendings for user <%= @user.name %>:</h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="col-md-2">Category</th>
+        <th scope="col" class="col-md-2">Amount</th>
+        <th scope="col" class="col-md-6">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @spendings.each do |spending| %>
+        <tr >
+          <td><%= spending.category %></td>
+          <td><%= spending.amount %></td>
+          <td style="word-break: break-all"><%= spending.description %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% @spendings.each do |spending| %>
-          <tr >
-            <td><%= spending.category %></td>
-            <td><%= spending.amount %></td>
-            <td style="word-break: break-all"><%= spending.description %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <h1>Total: <%= @total %></h1>
-  </div>
-<% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <h1>Total: <%= @total %></h1>
+</div>

@@ -43,14 +43,14 @@
     </thead>
     <tbody>
       <% @spendings.each do |spending| %>
-        <tr >
+        <tr>
           <td><%= spending.category %></td>
           <td><%= spending.amount %></td>
           <td style="word-break: break-all"><%= spending.description %></td>
-          <td>
-            <%= link_to "Show", spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
-            <%= link_to "Edit", edit_spending_path(spending), class: 'btn btn-secondary btn-sm', :method => :get %>
-            <%= link_to "Destroy", spending_path(spending), class: 'btn btn-danger btn-sm', data: { method: :delete, confirm: "Are you sure?" } %>
+          <td class="d-flex justify-content-around">
+            <%= link_to "Show", spending_path(spending), class: 'btn btn-secondary btn-sm', method: :get %>
+            <%= link_to "Edit", edit_spending_path(spending), class: 'btn btn-secondary btn-sm', method: :get %>
+            <%= button_to "Destroy", spending_path(spending), class: 'btn btn-danger btn-sm', method: :delete %>
           </td>
         </tr>
       <% end %>

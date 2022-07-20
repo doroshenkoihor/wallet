@@ -1,5 +1,4 @@
 class SpendingPolicy
-
   def initialize(user, record)
     @user = user
     @record = record

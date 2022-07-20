@@ -2,7 +2,7 @@ class SpendingsController < ApplicationController
   before_action :require_authentication
 
   def index
-    @spendings = Spending.all
+    @spendings = current_user.spendings
     @spendings = @spendings.where(category: params[:category]) if params[:category].present?
     @spendings = @spendings.where(amount: params[:amount_from]..) if params[:amount_from].present?
     @spendings = @spendings.where('amount <= ?', params[:amount_to].to_f) if params[:amount_to].present?

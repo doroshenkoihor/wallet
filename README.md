@@ -1,24 +1,19 @@
-# README
+# Wallet App by Igor Doroshenko
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Link to the deployed version on Heroku - https://secure-sierra-13660.herokuapp.com/<br />
+Test user credentials:<br />
+Login: test@test.com<br />
+Password: 123456<br />
+<br />
+Tech stack used:<br />
+Styling - Bootstrap<br />
+Authorization - Pundit Policy<br />
+Unit Tests - RSpec<br />
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Installation and usage instructions:
+- Pull the prohect to your local machine
+- Install gems by running `bundle install`
+- Setup and migrate DB - `rails db:setup`, `rails db:migrate`
+- Install npm packages by running `yarn install`
+- Launch app by running `rails s`
+- Sign Up and enjoy!
